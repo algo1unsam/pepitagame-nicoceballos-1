@@ -18,29 +18,6 @@ object silvestre {
 
 	method image() = "silvestre.png"
 
-//	method position() = game.origin()
+	method position() = game.origin()
 	
-	method position() = game.at(pepita.position().x().max(3), 0)
-
 }
-
-
-
-
-
-
-
-
-
-// method position() = game.at(pepita.position.x(), 0)
-//	method position() = game.at(self.coordenadaX(), 0)
-
-//	
-//	method coordenadaX() {
-//		return pepita.position().x().max(3)
-//	}
-//	
-//	method teEncontro(ave) {
-//		game.say(self, "YUM YUM YUM **Ruido de masticar**")
-//		game.schedule(2000, { game.stop() })
-//	}
