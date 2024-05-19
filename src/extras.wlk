@@ -1,4 +1,5 @@
 import pepita.*
+import niveles.*
 import wollok.game.*
 
 object nido {
@@ -8,8 +9,8 @@ object nido {
 	method image() = "nido.png"
 
 	method teEncontro(ave) {
-		game.say(ave, "GANASTE! WIII")
-		game.schedule(2000, { game.stop() })
+		config.ganar()
+
 	}
 }
 
@@ -18,6 +19,10 @@ object silvestre {
 
 	method image() = "silvestre.png"
 
-	method position() = game.origin()
+	method position() = game.at(pepita.position().x().max(3), 0)
 	
+	method teEncontro(ave){
+		config.perder()
+	}
 }
+

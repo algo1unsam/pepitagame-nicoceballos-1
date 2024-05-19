@@ -22,7 +22,7 @@ object tutorial2 {
 		game.addVisual(silvestre)
 		game.addVisual(pepita)
 		config.configurarTeclas()
-		//config.configurarGravedad()  
+		game.onTick(800, "GRAVEDAD", {pepita.caer(1)})
 	}
 
 }
@@ -36,8 +36,8 @@ object tutorial3 {
 		game.addVisual(silvestre)
 		game.addVisual(pepita)
 		config.configurarTeclas()
+		config.configurarGravedad()
 		config.configurarColisiones()
-	//	config.configurarGravedad()
 	}
 
 }
@@ -45,11 +45,47 @@ object tutorial3 {
 object config {
 
 	method configurarTeclas() {
-		keyboard.left().onPressDo({ pepita.irA(pepita.position().left(1)) })
-		keyboard.right().onPressDo({ pepita.irA(pepita.position().right(1))})
+		
+		keyboard.left().onPressDo({ 
+			pepita.irA(pepita.position().left(1))
+		})
+		
+		keyboard.right().onPressDo({ 
+			pepita.irA(pepita.position().right(1))
+		})
+
+		keyboard.up().onPressDo({ 
+			pepita.irA(pepita.position().up(1))
+		})
+		
+		keyboard.down().onPressDo({ 
+			pepita.irA(pepita.position().down(1))
+		})
+		keyboard.o().onPressDo({ 
+			pepita.irA(game.origin())
+		})
+		
+		keyboard.c().onPressDo({ 
+			pepita.come(game.uniqueCollider(pepita))
+		})
 	}
 	
 	method configurarColisiones() {
 		game.onCollideDo(pepita, { algo => algo.teEncontro(pepita) })
 	}
+	method configurarGravedad() {
+		game.onTick(800, "GRAVEDAD", {pepita.caer(1)})
+		}
+	method ganar() {
+		game.say(pepita, "GANASTE!")
+		self.terminar()	
+	}
+	method perder() {
+		game.say(pepita, "PERDISTE!")
+		self.terminar()	
+	}
+	method terminar() {
+		game.removeTickEvent("GRAVEDAD")
+		game.schedule(2000, { game.stop() })		
+	}	
 }
