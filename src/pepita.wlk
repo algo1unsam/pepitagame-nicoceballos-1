@@ -2,6 +2,7 @@ import extras.*
 import niveles.*
 import wollok.game.*
 
+//cambie el token porque se expiró y necesito corroborar que funcione
 object pepita {
 
 	var property energia = 100
